@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatMov</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+        <!--- LOGO--->
+        <div class = "logo">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <!--Menu-->
+        <div class = "column-class">    
+            <ul>
+                <li><a href="/main">Home</a></li>
+                <li><a href = "/login">Genre</a></li>
+                <li><a href = "#">Trending</a></li>
+                <li>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="text" placeholder="Search">
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <header class="header">
+        <img src="MalkuthLaptop.png" alt="Netflix" class="headerLogo">
+    </header>
+    <main>
+        <section class="thumbSection">
+            <h2 class="thumbTitle">Movie for you</h2>
+            <div class="thumbTiles swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <a class="thumbTile" href="#">
+                            <img class="thumbTile__image"
+                                src="pic1.jpg"
+                                alt="art1">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="thumbTile" href="#">
+                            <img class="thumbTile__image"
+                                src="pic2.webp"
+                                alt="art2">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="thumbTile" href="#">
+                            <img class="thumbTile__image"
+                                src="pic3.jpg"
+                                alt="art3">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="thumbTile" href="#">
+                            <img class="thumbTile__image"
+                                src="pic4.jpg"
+                                alt="art4">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            spaceBetween: 5,
+            slidesPerView: 2,
+            loop: true,
+            freeMode: true,
+            loopAdditionalSlides: 5,
+            speed: 500,
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                // when window width is >= 640px
+                640: {
+                    slidesPerView: 5,
+                    slidesPerGroup: 5,
+                    freeMode: false
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

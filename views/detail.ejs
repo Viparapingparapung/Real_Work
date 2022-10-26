@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="card-comment">
+        <h5 class="card-header">Comment:</h5>
+        <div class="card-body">
+            <form method="POST" onsubmit="return doComment(this);">
+                <div class="form-group">
+                    <input class="from-control" rows="3" name="username" />
+                </div>
+
+                <div class="from-group">
+                    <textarea class="from-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function doComment(form) {
+            $.ajax({
+                url:"/do-comment",
+                method: "POST",
+                data: {name:req.body.name,email:req.body.email,comment:req.body.comment,
+                post_id: form.post_id.value},
+                success: function (response) {
+                    alert(response)
+                }
+            });
+        }
+    </script>
+
+    <!--Single comment-->
+    
+    <div class="media mb-4">
+        <div class="media-body">
+            <h5 class="mt-0"> </h5>
+            
+        </div>
+    </div>
+    
+</body>
+</html>  
