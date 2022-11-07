@@ -13,10 +13,21 @@ var Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profile_image: {
-    type : String,
-    require:true
+  gender : {type:String},
+  ratings: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Rating"
+  },
+  results: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "result"
+  },
+  
+  post_comments: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "comment-blog"
   }
+
 });
 
 
@@ -25,3 +36,5 @@ var Schema = new mongoose.Schema({
 const User = mongoose.model("Brab", Schema);
 
 module.exports = User;
+
+

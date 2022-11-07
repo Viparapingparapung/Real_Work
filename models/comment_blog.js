@@ -1,22 +1,22 @@
 const mongoose = require("mongoose")
-
+// Detail from Comment
 const comment_blog = new mongoose.Schema ({
-    name:{
+    id:{
         type:String,
-        required: "this field is required"
+        required:true
     },
-    email:{
+    user_id: {
         type:String,
-        required: "this field is required"
+        required:true
     },
-    comment:{
+    date:{
+        type:Date,
+        required: true
+    },
+    content: {
         type:String,
-        required: "this field is required"
-    },
-    blog:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: 'Blog'
-    },
+        required: true
+    }
 })
 
 module.exports = mongoose.model('comment-blog',comment_blog);

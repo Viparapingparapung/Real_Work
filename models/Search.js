@@ -1,3 +1,4 @@
+/*
 const mongoose = require("mongoose");
 
 const search_Schema = new mongoose.Schema({
@@ -11,3 +12,4 @@ const search_Schema = new mongoose.Schema({
     },
 
 })
+*/
