@@ -10,6 +10,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const mongoose = require("mongoose")
 const fs = require('fs')
+const axios = require("axios")
 const path = require('path')
 const initializePassport = require('./passport-config')
 initializePassport(
@@ -43,14 +44,18 @@ connectDB();
 
 const User = require("./models/users");
 const Comment = require("./models/comment_blog")
+const Check = require("./models/onboardingcheck")
 const Post = require("./models/post_blog");
 const post_blog = require('./models/post_blog');
 const JWT_SECRET = 'some super secret...'
-
+const Api = require("./controllers/api");
+const { response } = require('express');
 // middleware
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(__dirname + '/public'));
+app.use("/services", express.static("services"))
+app.use("/public", express.static("public"))
 app.use('/dist', express.static('dist'))
 app.use('/picture', express.static('picture'))
 app.use('/Movie', express.static('Movie'))
@@ -70,6 +75,17 @@ app.get('/test', (req, res) => {
   res.render('detail.ejs')
 })
 
+app.get("/onboarding" , (req,res) => {
+  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
+    console.log(response.data.results)
+    res.render("choosemovie.ejs", {movie : response.data.results})
+  }).catch(err => console.log(err)) 
+  
+})
+
+app.post("/onboarding", (req,res) => {
+  
+})
 
 app.get('/', (req, res) => {
   res.render('register.ejs')
@@ -90,6 +106,26 @@ app.post('/login', (req, res, next) => {
       return res.render("main1.ejs",{email:user.email,password:user.password});
     })
   })(req, res, next)
+})
+
+app.get("/onboardingtest", (req,res) => {
+  res.render("onboarding.ejs")
+})
+
+app.post("/onboardingtest", async (req,res) => {
+  try{
+    const data = new Check({
+      color: req.body.additionals
+    })
+    data.save();
+    res.redirect("/testpage")
+  } catch(err) {
+    res.redirect("/onboardingtest")
+  }
+})
+
+app.get("/testpage", (req,res) => {
+  res.render("result")
 })
 
 /*
@@ -198,28 +234,14 @@ app.post(
   }
 )
 
-app.get("/title/:id", (req, res) => {
-  Post.findById(req.params.id)
-    .populate('comments')
-    .exec(function (err, results) {
-      if (err) { console.log(err) }
-      res.render('detail', { title: "Post detail", post: results, comments: results.comments })
-    })
-})
+app.get("/movie/:id", (req,res) => {
+  const requestdetail = axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`)
+  const requestvideo = axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}/videos?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`)
 
-app.get('/title/:id/comment', (req, res) => {
-  res.render('post-comment', { title: 'Post a comment' })
-})
-
-app.post('/title/:id/comment', async (req, res) => {
-  const comment = new Comment({ text: req.body.text });
-  const post = await Post.findById(req.params.id);
-  const savedPost = post.comments.push(comment);
-
-  savedPost.save(function (err, results) {
-    if (err) { console.log(err) }
-    res.render('detail', { title: 'Post detail', comments: results.comments })
-  })
+  axios.all([requestdetail,requestvideo]).then(axios.spread((responsedetail,responsevideo) => {
+    console.log(responsedetail.data,responsevideo.data)
+    res.render("detail.ejs", {movie: responsedetail.data, video: responsevideo.data.results})
+  }))
 })
 
 app.get('/main', (req, res) => {
@@ -248,7 +270,10 @@ app.post("/do-comment", function (req, res) {
 //
 
 app.get("/home", function (req, res) {
-  res.render("main1.ejs", {email: "1",password:"1"})
+  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
+    console.log(response.data.results)
+    res.render("main1.ejs", {email:"1", password:"1", movie : response.data.results})
+  }).catch(err => console.log(err))
 })
 
 app.get("/user", async (req, res) => {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function handleCheckbox(){
+          var checkboxField=document.forms[0].additionals;
+          console.log(checkboxField, typeof(checkboxField));
+          for(let i=0; i< checkboxField.length; i++) {
+            if(checkboxField[i].checked){
+              console.log("Selected : ", checkboxField[i].value)
+            }
+          }
+        }
+      </script>
+    <title>Document</title>
+</head>
+<body>
+    <form action="/onboardingtest" method="POST">
+        <input type="checkbox" name="additionals" value="Red" /> Red
+        <br/>
+        <input type="checkbox" name="additionals" value="Blue" /> Blue
+        <br/>
+        <input type="checkbox" name="additionals" value="Yellow" /> Yellow
+        <br/>
+        <input type="button" value="Handle checkbox" onclick="handleCheckbox()" />
+      </form>
+</body>
+</html>

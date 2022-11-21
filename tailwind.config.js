@@ -25,6 +25,7 @@ module.exports = {
       '2xl': '1536px',
     }
   },
+  mode: "jit",
   plugins: [
     require('flowbite/plugin'),
     require('tw-elements/dist/plugin')

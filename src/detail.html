@@ -77,7 +77,7 @@
         </nav>
         <div class="mt-4 mb-4 mx-4">
             <div class="relative rounded-l bg-violet-200">
-                <img class="object-cover h-48 w-full" src="https://image.tmdb.org/t/p/w500<%=movie.backdrop_path%>">
+                <img class="object-cover h-48 w-full" src="/picture/Puns_logo-1.png">
             </div>
         </div>
 
@@ -86,9 +86,9 @@
                 <!--poster-->
                 <div class="relative rounded-2xl ml-8 bottom-6">
                     <div class="flex flex-row space-x-8">
-                        <img src="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" alt="" class="object-cover h-56 w-44 border-2 border-black ">
+                        <img src="/Movie/download (1).jfif" alt="" class="object-cover h-56 w-44 border-2 border-black ">
                         <div class="relative rounded-2xl"> 
-                            <iframe src="https://www.youtube.com/watch?v=<%=video.key %>" frameborder="0" class="h-56 w-92"></iframe>
+                            <iframe src="https://www.youtube.com/embed/m8tBUFP9uJo" frameborder="0" class="h-56 w-92"></iframe>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="relative flex items-center ml-8">
                     <div class="flex flex-row space-x-12">
                         <h1 class="inline-block font-bold text-2xl sm:text-3xl">
-                            <%=movie.title%>
+                            <%=%>
                         </h1>
                         <div class="relative">
                             <h1 class="inline-block font-bold text-2xl sm:text-3xl">7/10</h1>
@@ -105,7 +105,13 @@
                 </div>
                 <div class="relative flex flex-row space-x-2 ml-6 font-bold pt-4">
                     <div class="h-10 w-20 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm">
-                        <%= movie.genres[0]%> 
+                        001
+                    </div>
+                    <div class="h-10 w-20 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm">
+                        001
+                    </div>
+                    <div class="h-10 w-20 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm">
+                        001
                     </div>
                 </div>
                 <div class="relative flex items-center ml-8 pt-4">
@@ -146,21 +152,69 @@
                 </div>
                 <div class="relative flex items-center ml-8 pt-4">
                     <h1 class="font-semibold">Storyline</h1>
-                    <div class=""><%=movie.overview%> </div>
+                    <div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
                 </div>
                 <div class="pl-3 pt-4">
                     <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                     <div class="movie-list-wrapper">
-                        <form class="movie-list" action="/movie/:id" method="POST">
-                            <% for (var i = 0; i < movie.length; i+=3) { %> 
+                        <div class="movie-list">
                             <div class="movie-list-item">
-                                <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie[i].backdrop_path %>" alt="">
-                                <span class="movie-list-item-title"><%=movie[i].title%></span>
-                                <p class="movie-list-item-desc"><%=movie[i].overview%></p>
+                                <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                                <span class="movie-list-item-title">Her</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
                                 <button class="movie-list-item-button">Watch</button>
                             </div>
-                            <% } %> 
-                        </form>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/2.jpeg" alt="">
+                                <span class="movie-list-item-title">Star Wars</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/3.jpg" alt="">
+                                <span class="movie-list-item-title">Storm</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/4.jpg" alt="">
+                                <span class="movie-list-item-title">1917</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/5.jpg" alt="">
+                                <span class="movie-list-item-title">Avengers</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/5.jpg" alt="">
+                                <span class="movie-list-item-title">Avengers</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/5.jpg" alt="">
+                                <span class="movie-list-item-title">Avengers</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img" src="img/5.jpg" alt="">
+                                <span class="movie-list-item-title">Avengers</span>
+                                <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                    hic fugit similique accusantium.</p>
+                                <button class="movie-list-item-button">Watch</button>
+                            </div>
+                        </div>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                 </div>
