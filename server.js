@@ -114,11 +114,11 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user) => {
     if (err) { return next(err); }
-    if (!user) { return res.redirect('/home'); }
+    if (!user) { return res.redirect('/login'); }
 
     req.logIn(user, (err) => {
       if (err) { return next(err); }
-      return res.render("main1.ejs",{email:user.email,password:user.password});
+      return res.redirect("/home");
     })
   })(req, res, next)
 })
@@ -228,8 +228,11 @@ app.get("/home", async (req, res) => {
     responses_top_hit = responses[0]
     responses_for_you = responses[1]
     console.log(responses_top_hit.data.results)
+    console.log(responses_for_you.data)
     res.render("main1.ejs", { email: "1", password: "1", movie_top: responses_top_hit.data.results, movie_rec: responses_for_you.data.results })
+
   }).catch(err => console.log(err))
+
 })
 //profile page
 app.get("/user", async (req, res) => {

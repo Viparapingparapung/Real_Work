@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <script src="/node_modules/flowbite/dist/flowbite.js"></script>
 
-    <title>Document</title>   
+    <title>Catmov</title>   
     <input type="hidden" name="email" value="<%=email%>"  />
     <input type="hidden" name="password" value="<%=password%>"  />
 </head>
@@ -80,64 +80,52 @@
         </div>
       </nav>
 
-      <div id="carouselExampleControls" class="carousel slide relative" data-bs-ride="carousel">
-          <div class="carousel-inner relative w-full overflow-hidden">
-            <div class="carousel-item active relative float-left w-full">
-              <img
-                src="/Movie/download (1).jfif"
-                class="block w-full"
-                alt="Wild Landscape"
-              />
-            </div>
-            <div class="carousel-item relative float-left w-full">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-                class="block w-full"
-                alt="Camera"
-              />
-            </div>
-            <div class="carousel-item relative float-left w-full">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-                class="block w-full"
-                alt="Exotic Fruits"
-              />
-            </div>
+      <div id="default-carousel" class="relative" data-carousel="static">
+        <!-- Carousel wrapper -->
+        <div class="container mx-auto pt-6 px-6">
+          <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+               <!-- Item 1 -->
+              <div class="duration-700 ease-in-out absolute inset-0 transition-all transform z-10 translate-x-full" data-carousel-item="">
+                  <span class="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
+                  <img src="/Movie/5GA3vV1aWWHTSDO5eno8V5zDo8r.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+              </div>
+              <!-- Item 2 -->
+              <div class="duration-700 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10" data-carousel-item="">
+                  <img src="/Movie/y5Z0WesTjvn59jP6yo459eUsbli.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+              </div>
+              <!-- Item 3 -->
+              <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="">
+                  <img src="/Movie/one-piece-one-piece-is-real.gif" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+              </div>
+              <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev="">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+              </button>
+              <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next="">
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                      <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                      <span class="sr-only">Next</span>
+                  </span>
+              </button>
           </div>
-          <button
-            class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+        </div>         
       </div>
-
+      </div><script src="https://flowbite.com/docs/flowbite.js"></script><script src="https://flowbite.com/docs/datepicker.js"></script><script>window.onload = function () { const anchorTags = document.querySelectorAll('a'); anchorTags.forEach(function(a){a.addEventListener('click', function(ev){ev.preventDefault();})}); const dropdownEl = document.querySelector('[data-dropdown-toggle]'); if (dropdownEl) {dropdownEl.click();} const modalEl = document.querySelector('[data-modal-toggle]'); if(modalEl) {modalEl.click(); }  const dateRangePickerEl = document.querySelector('[data-rangepicker] input'); if (dateRangePickerEl) { dateRangePickerEl.focus(); } const drawerEl = document.querySelector('[data-drawer-show]'); if (drawerEl) { drawerEl.click(); } }</script>
 
       <div class="container mx-auto bg-gray-100">
           <div class="relative space-x-4 m-8">
               <p class="text-left text-purple-400 ml-3 font-bold text-xl underline-offset-8 antialiased capitalize">Find your movie</p>
-              <div>
+              <div class="mt-3">
                 <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                 <div class="movie-list-wrapper">
                   <div class="movie-list">
-                    <% for (var i = 0; i < movie_rec.length; i+= 3) { %>
+                    <% for (var i = 0; i < movie_rec.length; i+=2) { %>
                       <form action="/movie/<%=movie_rec[i].id%>" method="GET">
                         <div class="movie-list-item">
                           <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie_rec[i].backdrop_path %>" alt="Show">
                           <span class="movie-list-item-title"><%=movie_rec[i].title%></span>
-                          <p class="movie-list-item-desc"><%= movie_rec[i].overview %> </p>
                           <button name="id" class="movie-list-item-button">Watch</button>
                         </div>
                       </form>
@@ -155,12 +143,14 @@
                         <div class="movie-list-item">
                           <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie_top[i].backdrop_path %>" alt="Show">
                           <span class="movie-list-item-title"><%=movie_top[i].title%></span>
-                          <p class="movie-list-item-desc"><%= movie_top[i].overview %> </p>
-                          <a href="/movie/:id">
-                            <button name="id" class="movie-list-item-button">
-                              Watch
-                            </button>
-                          </a>
+                          <div class="pb-4">
+                            <a href="/movie/:id">
+                              <button name="id" class="movie-list-item-button">
+                                Watch
+                              </button>
+                            </a>                            
+                          </div>
+
                         </div>
                       </form>  
                       <% } %>
@@ -195,10 +185,10 @@
                       <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                       <ul class="text-gray-600 dark:text-gray-400">
                           <li class="mb-4">
-                              <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                              <a href="https://github.com/Viparapingparapung" class="hover:underline ">Github</a>
                           </li>
                           <li>
-                              <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                              <a href="https://discord.gg/9b7jD6EG" class="hover:underline">Discord</a>
                           </li>
                       </ul>
                   </div>
@@ -217,7 +207,7 @@
           </div>
           <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <div class="sm:flex sm:items-center sm:justify-between">
-              <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
+              <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com/" class="hover:underline">Catmov™</a>. All Rights Reserved.
               </span>
               <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                   <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
@@ -232,7 +222,7 @@
                       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
                       <span class="sr-only">Twitter page</span>
                   </a>
-                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                  <a href="https://github.com/Viparapingparapung" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       <span class="sr-only">GitHub account</span>
                   </a>

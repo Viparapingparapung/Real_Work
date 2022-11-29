@@ -11,7 +11,7 @@ function initialize(passport) {
             var dbo = db.db("test");
             var query = {email:email};
             dbo
-                .collection("brabs")
+                .collection("Users")
                 .find(query)
                 .toArray(async function (err, result) {
                     if (err) throw err;

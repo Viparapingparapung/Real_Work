@@ -186,21 +186,22 @@
     -webkit-text-stroke: 1px black;
     color: white;
     padding: 0 10px;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     position: absolute;
-    top: 5%;
+    top: 25%;
     left: 50px;
     opacity: 0;
     transition: 1s all ease-in-out;
   }
   
   .movie-list-item-desc {
-    color: white;
+    color: rgb(53, 53, 53);
     padding: 10px;
-    font-size: 8px;
+    font-size: 10px;
+    font-weight: 700;
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 50px;
     width: 230px;
     opacity: 0;

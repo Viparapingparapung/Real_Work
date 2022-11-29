@@ -33,7 +33,7 @@ var Schema = new mongoose.Schema({
 
 
 
-const User = mongoose.model("Brab", Schema);
+const User = mongoose.model("Users", Schema);
 
 module.exports = User;
 

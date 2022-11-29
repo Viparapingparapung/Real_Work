@@ -43,8 +43,14 @@
                             required/>
                     </div>
                     <button type="submit" class="btn btn-black">Login</button>
-                    <button type="submit" class="btn btn-secondary" onclick="location.href='/register'">Register</button>
                 </form>
+                <button type="submit" class="btn btn-secondary" id="register" >Register</button>
+                <script>
+                    const btn = document.getElementById("register")
+                    btn.addEventListener("click", function(){
+                        location.replace("http://localhost:3000/register")
+                    })
+                </script>
             </div>
         </div>
     </div>
