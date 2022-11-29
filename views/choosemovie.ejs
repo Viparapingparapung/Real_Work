@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
     <script src="/node_modules/tw-elements/dist/js/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/node_modules/flowbite/dist/flowbite.js"></script>
     <title>Document</title>
 </head>
@@ -31,7 +32,7 @@
                     </form>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-8 gap-4">
                         <% for (var i = 0; i < movie.length; i++) { %>
-                        <form action="/onboarding" method="post">
+                        <form action="/onboarding/get_data" method="post">
                             <div class="p-2 bg-white rounded-md border border-gray-200">
                                 <img
                                     src= "https://image.tmdb.org/t/p/w500<%= movie[i].poster_path %> "
@@ -39,16 +40,35 @@
                                 />
                                 <div class="text-center mt-2 mb-2">
                                     <strong class="font-bold"><%= movie[i].title%></strong>
-                                    <input id="bordered-checkbox-2" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input id="movie<%=i%>" type="checkbox" value="<%=movie[i].id%>" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                         </form>
                         <% } %>
                     </div>
-                    <button class="w-full text-white bg-violet-600 hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" href="">--></button>        
+                    <button id="submitbtn" class="w-full text-white bg-violet-600 hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" href="">--></button>        
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const emptydata = []
+        const array = ["123","456"]
+        const datainput = document.querySelectorAll("input");
+        const element = document.getElementById("submitbtn")
+        element.addEventListener("click", function(){
+            for(var j=1; j<datainput.length; j++){
+                if (datainput[j].checked == true){
+                    emptydata.push(String(datainput[j].value))
+                } 
+                
+            }
+            axios.post("http://localhost:3000/onboarding/get_data", emptydata).then(response => {
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error)
+            })
+        })
+    </script>
 </body>
 </html>

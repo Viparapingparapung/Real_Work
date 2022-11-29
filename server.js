@@ -10,6 +10,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const mongoose = require("mongoose")
 const fs = require('fs')
+const bodyparser = require("body-parser");
 const axios = require("axios")
 const path = require('path')
 const initializePassport = require('./passport-config')
@@ -27,7 +28,6 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage: storage });
-const bodyParser = require("body-parser")
 
 const connectDB = async () => {
   try {
@@ -44,6 +44,7 @@ connectDB();
 
 const User = require("./models/users");
 const Comment = require("./models/comment_blog")
+const Result = require("./models/Result")
 const Check = require("./models/onboardingcheck")
 const Post = require("./models/post_blog");
 const post_blog = require('./models/post_blog');
@@ -53,8 +54,11 @@ const { response } = require('express');
 // middleware
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static(__dirname + '/public'));
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
+app.use(bodyparser.json({ type: "application/*+json" }));
 app.use("/services", express.static("services"))
+app.use(express.static(__dirname + '/public'));
 app.use("/public", express.static("public"))
 app.use('/dist', express.static('dist'))
 app.use('/picture', express.static('picture'))
@@ -75,16 +79,27 @@ app.get('/test', (req, res) => {
   res.render('detail.ejs')
 })
 
+//choosing movie
 app.get("/onboarding" , (req,res) => {
   axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
     console.log(response.data.results)
     res.render("choosemovie.ejs", {movie : response.data.results})
-  }).catch(err => console.log(err)) 
-  
+  }).catch(err => console.log(err))
 })
 
-app.post("/onboarding", (req,res) => {
-  
+app.post("/onboarding/get_data", (req,res) => {
+
+  console.log(req.body);
+  const data = new Result({
+    idmovie: req.body
+  });
+  data.save();
+  /*
+  const data = new Result({
+    idmovie : req.body.emptydata
+  })
+  data.save();
+  */
 })
 
 app.get('/', (req, res) => {
@@ -107,82 +122,6 @@ app.post('/login', (req, res, next) => {
     })
   })(req, res, next)
 })
-
-app.get("/onboardingtest", (req,res) => {
-  res.render("onboarding.ejs")
-})
-
-app.post("/onboardingtest", async (req,res) => {
-  try{
-    const data = new Check({
-      color: req.body.additionals
-    })
-    data.save();
-    res.redirect("/testpage")
-  } catch(err) {
-    res.redirect("/onboardingtest")
-  }
-})
-
-app.get("/testpage", (req,res) => {
-  res.render("result")
-})
-
-/*
-app.get('/:id' , (req,res) => {
-  try {
-    const author = User.findById(req.params.id)
-    res.render('iduserprofile.ejs', {
-      author: author
-    })
-
-  } catch {
-    res.redirect('/')
-  }
-})
-
-app.put('/:id' , async (req,res) => {
-  let author
-  try {
-    author = await User.findById(req.params.id)
-    author.name = req.body.name
-    await author.save()
-    res.redirect(`/profile/${author.id}`)
-  } catch {
-    if (author == null) {
-      res.redirect('/')
-    } else {
-      res.render('edit', {
-        author : author,
-        errorMessage: 'Error Update'
-      })
-    }
-  }
-})
-app.get('/:id/edit', async (req,res) => {
-  try {
-    const author = await User.findById(req.params.id)
-    res.render('edit' , {author: author})
-  } catch {
-    res.redirect('/profile')
-  }
-}) 
-
-app.delete('/:id', async (req,res) => {
-  let author
-  try {
-    author = await User.findById(req.params.id)
-    await author.remove()
-    res.redirect('/profile')
-  } catch {
-    if (author == null) {
-      res.redirect('/')
-    } else {
-      res.redirect(`/profile/${author.id}`)
-    }
-  }
-});
-*/
 
 app.get('/register', (req, res) => {
   res.render('register.ejs')
@@ -234,6 +173,7 @@ app.post(
   }
 )
 
+//movie detail page
 app.get("/movie/:id", (req,res) => {
   const requestdetail = axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`)
   const requestvideo = axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}/videos?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`)
@@ -268,14 +208,30 @@ app.post("/do-comment", function (req, res) {
   });
 });
 //
-
-app.get("/home", function (req, res) {
-  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
-    console.log(response.data.results)
-    res.render("main1.ejs", {email:"1", password:"1", movie : response.data.results})
-  }).catch(err => console.log(err))
+app.get("/data", async (req,res) => {
+  const data = await Result.findOne({_id:'6384a235d458e76a49cbb0bf'});
+  console.log(data.idmovie.join(','))
+  
 })
 
+//home page
+app.get("/home", async (req, res) => {
+  const datas = await Result.findOne({_id:'6384a235d458e76a49cbb0bf'});
+
+  let url_top_hit = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5"
+  let url_for_you = `http://165.22.3.172:8000/id?m_id=${datas.idmovie.join(',')}`
+
+  const reques_top_hit = axios.get(url_top_hit);
+  const reques_for_you = axios.get(url_for_you);
+  // results
+  axios.all([reques_top_hit, reques_for_you]).then((responses) => {
+    responses_top_hit = responses[0]
+    responses_for_you = responses[1]
+    console.log(responses_top_hit.data.results)
+    res.render("main1.ejs", { email: "1", password: "1", movie_top: responses_top_hit.data.results, movie_rec: responses_for_you.data.results })
+  }).catch(err => console.log(err))
+})
+//profile page
 app.get("/user", async (req, res) => {
   res.render("Profileform.ejs")
 })

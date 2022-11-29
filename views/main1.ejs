@@ -64,16 +64,16 @@
           <div class="hidden justify-between items-center w-full md:flex md:w-auto md:px-6" id="mobile-menu-2">
             <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-10 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a href="/home" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                <a href="/home" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Genre</a>
+                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Genre</a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Trending</a>
+                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Trending</a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
               </li>
             </ul>
           </div>
@@ -132,12 +132,12 @@
                 <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                 <div class="movie-list-wrapper">
                   <div class="movie-list">
-                    <% for (var i = 0; i < movie.length; i+= 3) { %>
-                      <form action="/movie/<%=movie[i].id%>" method="GET">
+                    <% for (var i = 0; i < movie_rec.length; i+= 3) { %>
+                      <form action="/movie/<%=movie_rec[i].id%>" method="GET">
                         <div class="movie-list-item">
-                          <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie[i].backdrop_path %>" alt="Show">
-                          <span class="movie-list-item-title"><%=movie[i].title%></span>
-                          <p class="movie-list-item-desc"><%= movie[i].overview %> </p>
+                          <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie_rec[i].backdrop_path %>" alt="Show">
+                          <span class="movie-list-item-title"><%=movie_rec[i].title%></span>
+                          <p class="movie-list-item-desc"><%= movie_rec[i].overview %> </p>
                           <button name="id" class="movie-list-item-button">Watch</button>
                         </div>
                       </form>
@@ -150,17 +150,19 @@
                 <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                 <div class="movie-list-wrapper">
                   <div class="movie-list">
-                    <% for (var i = 0; i < movie.length; i+= 3) { %>
-                      <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie[i].backdrop_path %>" alt="Show">
-                        <span class="movie-list-item-title"><%=movie[i].title%></span>
-                        <p class="movie-list-item-desc"><%= movie[i].overview %> </p>
-                        <a href="/movie/:id">
-                          <button class="movie-list-item-button">
-                            Watch
-                          </button>
-                        </a>
-                      </div>
+                    <% for (var i = 0; i < movie_top.length; i+= 3) { %>
+                      <form action="/movie/<%=movie_top[i].id%>" method="GET">
+                        <div class="movie-list-item">
+                          <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie_top[i].backdrop_path %>" alt="Show">
+                          <span class="movie-list-item-title"><%=movie_top[i].title%></span>
+                          <p class="movie-list-item-desc"><%= movie_top[i].overview %> </p>
+                          <a href="/movie/:id">
+                            <button name="id" class="movie-list-item-button">
+                              Watch
+                            </button>
+                          </a>
+                        </div>
+                      </form>  
                       <% } %>
                   </div>
                   <i class="fas fa-chevron-right arrow"></i>

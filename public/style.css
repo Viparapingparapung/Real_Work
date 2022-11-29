@@ -183,21 +183,22 @@
   }
   
   .movie-list-item-title {
-    background-color: #333;
+    -webkit-text-stroke: 1px black;
+    color: white;
     padding: 0 10px;
-    font-size: 32px;
+    font-size: 20px;
     font-weight: bold;
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 50px;
     opacity: 0;
     transition: 1s all ease-in-out;
   }
   
   .movie-list-item-desc {
-    background-color: #333;
+    color: white;
     padding: 10px;
-    font-size: 14px;
+    font-size: 8px;
     position: absolute;
     top: 30%;
     left: 50px;
@@ -208,7 +209,7 @@
   
   .movie-list-item-button {
     padding: 10px;
-    background-color: #4dbf00;
+    background-color: #7a00da;
     color: white;
     border-radius: 10px;
     outline: none;
