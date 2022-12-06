@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/test.css">
+    <title>Document</title>
+</head>
+<body>
+   <div class="container">
+    <input type="text" id="comment-box" placeholder="Enter comment">
+    <p class="counter" id="counter">250</p>
+    <button id="post">Post</button>
+    <ul id="unordered" class="BG-color">
+       
+    </ul>
+   </div>
+<script>
+
+    var post = document.getElementById("post");
+    post.addEventListener("click", function() {
+        var Commentbox = document.getElementById("comment-box").value;
+        var li = document.createElement("li");
+        var text = document.createTextNode(Commentbox);
+        li.appendChild(text);
+        document.getElementById("unordered").appendChild(li);
+        
+    });
+
+    var numWrite = document.getElementById("comment-box");
+    numWrite.addEventListener("keyup", function(){
+        var postLength = document.getElementById(this).value;
+        var charactersLeft = 250 - postLength;
+        document.getElementsByClassName("counter").text(charactersLeft);
+        if (charactersLeft < 0) {
+            document.getElementById('post').classList.add('disable');
+        } else if (charactersLeft === 250){
+            document.getElementById('post').classList.add('disable');
+        } else {
+            document.getElementById('post').classList.remove('disable');
+        }
+    });
+    
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+body {
+    background: dodgerblue linear-gradient(45deg, aqua, dodgerblue, deeppink) fixed;
+
+}
+#comment-box, #post {
+    border: none;
+    border-radius: 5px;
+}
+.container {
+    width: 520px;
+    margin-top: 20px;
+}
+.button-group {
+    margin-bottom: 20px;
+}
+.counter {
+    display: inline;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+.BG-color {
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+}
+
+#post:hover{
+    background-color: deeppink;
+}

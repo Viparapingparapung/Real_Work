@@ -74,39 +74,11 @@ app.use(passport.session());
 //
 
 //Router
-
-app.get('/test', (req, res) => {
-  res.render('detail.ejs')
-})
-
-//choosing movie
-app.get("/onboarding" , (req,res) => {
-  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
-    console.log(response.data.results)
-    res.render("choosemovie.ejs", {movie : response.data.results})
-  }).catch(err => console.log(err))
-})
-
-app.post("/onboarding/get_data", (req,res) => {
-
-  console.log(req.body);
-  const data = new Result({
-    idmovie: req.body
-  });
-  data.save();
-  /*
-  const data = new Result({
-    idmovie : req.body.emptydata
-  })
-  data.save();
-  */
-})
-
 app.get('/', (req, res) => {
   res.render('register.ejs')
 })
 
-//
+/*LOGIN FORM*/
 app.get('/login', (req, res) => {
   res.render('login.ejs')
 })
@@ -123,6 +95,7 @@ app.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
+/*REGISTER FORM*/ 
 app.get('/register', (req, res) => {
   res.render('register.ejs')
 
@@ -146,10 +119,10 @@ app.post('/register', async (req, res) => {
   }
   //
 });
-
+/* LOGOUT FORM*/
 app.get("/logout", (req, res) => {
   req.logout();
-  req.redirect("/main");
+  req.redirect("/main1");
 })
 
 
@@ -173,21 +146,39 @@ app.post(
   }
 )
 
+//genre
+app.get("/genre/:name", (req,res) => {
+
+  const list = ["Action","Adventure","Animation","Comedy","Crime","Documentary","Drama","Family","Fantasy","History","Horror","Music","Mystery","Romance","Science Fiction","TV Movie","Thriller","War","Western"]
+
+  let url_top_hit = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5"
+  let url_for_you = `http://165.22.3.172:8000/get-form-genres?gen=${req.params.name}`
+  let url_movie_slide = `https://api.themoviedb.org/3/movie/62177/recommendations?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`
+  
+  const reques_top_hit = axios.get(url_top_hit);
+  const reques_for_you = axios.get(url_for_you);
+  const reques_movie_slide = axios.get(url_movie_slide);
+  axios.all([reques_top_hit, reques_for_you, reques_movie_slide]).then((responses) => {
+    responses_top_hit = responses[0]
+    responses_for_you = responses[1]
+    responses_movie_slide = responses[2]
+    //console.log(responses_genre.data.genres)
+    res.render("main.ejs", { email: "1", password: "1", movie_top: responses_top_hit.data.results, movie_rec: responses_for_you.data.results, movie_show: responses_movie_slide.data.results,})
+
+  }).catch(err => console.log(err))
+})
 //movie detail page
 app.get("/movie/:id", (req,res) => {
   const requestdetail = axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`)
   const requestvideo = axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}/videos?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`)
+  const requestrecomment = axios.get(`http://165.22.3.172:8000/id?m_id=${req.params.id}&random=true`);
 
-  axios.all([requestdetail,requestvideo]).then(axios.spread((responsedetail,responsevideo) => {
-    console.log(responsedetail.data,responsevideo.data)
-    res.render("detail.ejs", {movie: responsedetail.data, video: responsevideo.data.results})
+  axios.all([requestdetail,requestvideo,requestrecomment]).then(axios.spread((responsedetail,responsevideo,responserecomment) => {
+    console.log(responserecomment.data)
+    res.render("detail.ejs", {movie: responsedetail.data, video: responsevideo.data.results, recomment: responserecomment.data.results})
   }))
 })
 
-app.get('/main', (req, res) => {
-  console.log(req.user)
-  res.render('main1.ejs')
-})
 
 
 
@@ -218,22 +209,43 @@ app.get("/data", async (req,res) => {
 app.get("/home", async (req, res) => {
   const datas = await Result.findOne({_id:'6384a235d458e76a49cbb0bf'});
 
+
   let url_top_hit = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5"
-  let url_for_you = `http://165.22.3.172:8000/id?m_id=${datas.idmovie.join(',')}`
+  let url_for_you = `http://165.22.3.172:8000/id?m_id=${datas.idmovie.join(',')}&random=true`
+  let url_movie_slide = `https://api.themoviedb.org/3/movie/62177/recommendations?api_key=0b4a78f3f6df40ca3779248e701f90e5&language=en-US`
 
   const reques_top_hit = axios.get(url_top_hit);
   const reques_for_you = axios.get(url_for_you);
+  const reques_movie_slide = axios.get(url_movie_slide);
+  const list = ["Action","Adventure","Animation","Comedy","Crime","Documentary","Drama","Family","Fantasy","History","Horror","Music","Mystery","Romance","Science Fiction","TV Movie","Thriller","War","Western"]
   // results
-  axios.all([reques_top_hit, reques_for_you]).then((responses) => {
+  axios.all([reques_top_hit, reques_for_you, reques_movie_slide]).then((responses) => {
     responses_top_hit = responses[0]
     responses_for_you = responses[1]
-    console.log(responses_top_hit.data.results)
-    console.log(responses_for_you.data)
-    res.render("main1.ejs", { email: "1", password: "1", movie_top: responses_top_hit.data.results, movie_rec: responses_for_you.data.results })
+    responses_movie_slide = responses[2]
+    console.log(responses_movie_slide.data.results)
+    res.render("main1.ejs", { email: "1", password: "1", movie_top: responses_top_hit.data.results, movie_rec: responses_for_you.data.results, movie_show: responses_movie_slide.data.results, list_genre: list})
 
   }).catch(err => console.log(err))
 
+});
+//choosing movie
+app.get("/onboarding" , (req,res) => {
+  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
+    console.log(response.data.results)
+    res.render("choosemovie.ejs", {movie : response.data.results})
+  }).catch(err => console.log(err))
 })
+
+app.post("/onboarding/get_data", (req,res) => {
+
+  console.log(req.body);
+  const data = new Result({
+    idmovie: req.body
+  });
+  data.save();
+});
+
 //profile page
 app.get("/user", async (req, res) => {
   res.render("Profileform.ejs")
