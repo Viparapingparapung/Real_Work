@@ -91,7 +91,7 @@
                     <div class="flex flex-row space-x-8">
                         <img src="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" alt="" class="object-cover h-56 w-44 border-2 border-black ">
                         <div class="relative rounded-2xl"> 
-                            <iframe src="https://www.youtube.com/watch?v=<%=video.key %>" frameborder="0" class="h-56 w-92"></iframe>
+                          <iframe src="https://www.youtube.com/embed/<%=video[0].key %>?autoplay=1&mute=0" frameborder="0" class="h-56 w-92"></iframe>
                         </div>
                     </div>
                 </div>
@@ -102,50 +102,37 @@
                             <%=movie.title%>
                         </h1>
                         <div class="relative">
-                            <h1 class="inline-block font-bold text-2xl sm:text-3xl">7/10</h1>
-                        </div>
+                          <h1 class="inline-block font-bold text-2xl sm:text-3xl" style="margin-top: 10px;">
+                              <%= movie.vote_average%>/10
+                          </h1>
+                      </div>
                     </div>
                 </div>
                 <div class="relative flex flex-row space-x-2 ml-6 font-bold pt-4">
-                    <div class="h-10 w-20 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm">
-                        <%= movie.genres[0]%> 
-                    </div>
+                  <% for (var i=0; i < movie.genres.length; i+=1) { %>
+                      <div
+                          class="h-10 w-32 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm text-sm">
+                          <%= movie.genres[i].name%>
+                      </div>
+                      <% } %>
                 </div>
                 <div class="relative flex items-center ml-8 pt-4">
-                    <div class="flex flex-col">
-                        <ul>
-                            <li class="flex flex-row space-x-2">
-                                <span class="font-bold text-2xl">Director</span>
-                                <div class="">
-                                    <ul>
-                                        <li class="">
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="font-bold text-blue-700 text-xl underline underline-offset-1">Click</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="flex flex-row space-x-2">
-                                <span class="font-bold text-2xl">Writter</span>
-                                <div class="">
-                                    <ul>
-                                        <li class="">
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="font-bold text-blue-700 text-xl underline underline-offset-1">Click</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="flex flex-row space-x-2">
-                                <span class="font-bold text-2xl">Cast</span>
-                                <div class="">
-                                    <ul>
-                                        <li class="">
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="font-bold text-blue-700 text-xl underline underline-offset-1">Click</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="flex flex-col">
+                    <ul>
+                      <% for (var i=0; i < director.length; i+=1) { %>
+                        <li class="flex flex-row space-x-2 space-y-1.5 ">
+                            <div
+                                class="h-10 w-32 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm font-bold text-2xl">
+                                <%= director[i].known_for_department%>
+                            </div>
+                            <div
+                                class="h-10 w-52 rounded-lg flex items-center justify-center font-bold text-2xl">
+                                <%= director[i].original_name%>
+                            </div>
+                        </li>
+                        <% } %>
+                    </ul>
+                  </div>
                 </div>
                 <div class="relative flex items-center ml-8 pt-4">
                     <h1 class="font-semibold">Storyline</h1>
@@ -172,14 +159,6 @@
             </div>
         </div>
     </div>
-    
-    <% for (var i=0; i < movie.genres.length; i+=1) { %>
-      <div
-          class="h-10 w-20 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm">
-          <%= movie.genres[0].name%>
-      </div>
-    <% } %> 
-
     </div>
     <script src="/services/control.js"></script>
 </body>

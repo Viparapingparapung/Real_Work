@@ -52,7 +52,7 @@
                     <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
                   </li>
                   <li>
-                    <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                    <a href="/logout" onclick="Logout()" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
                   </li>
                 </ul>
               </div>
@@ -64,7 +64,7 @@
           <div class="hidden justify-between items-center w-full md:flex md:w-auto md:px-6" id="mobile-menu-2">
             <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-10 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a href="/home" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                <a href="/home" onclick="HomeRefresh()" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
               </li>
               <li>
                 <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 font-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Genre</a>
@@ -115,19 +115,19 @@
             <p class="text-left text-gray-700 font-medium font-lg font-bold">| Movie For you</p>
             <div class="movie-list-wrapper">
               <div class="movie-list">
-                <% for (var i=0; i < list_genre.length; i+=3) { %>
+                <% for (var i=0; i < list_genre.length; i+=1) { %>
                   <form action="/genre/<%= list_genre[i]%>" method="GET">
-                    <div class="movie-list-item">
-                      <div class="movie-list-item-genres">
-                        <%=list_genre[i]%>
-                        <button name="name" class="movie-list-item-button"><img
+                    <div class="background-genres">
+                      <div class="background-genres-img">
+                        <img src="<%=bg[i]%>" alt="Show" class="background-genres-img">
+                        <span class="movie-list-item-genres"><%=list_genre[i]%></span>
+                        <button name="id" class="movie-list-item-button"><img
                           src="https://cdn-icons-png.flaticon.com/512/2898/2898856.png" id="b_img"></button>
-                      </div>                      
+                      </div>
+                      
                     </div>
-
-                  </form>
-                  
-                  <% } %>
+                  </form>   
+                <% } %>
               </div>
               <i class="fas fa-chevron-right arrow"></i>
             </div>
@@ -139,7 +139,7 @@
                 <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                 <div class="movie-list-wrapper">
                   <div class="movie-list">
-                    <% for (var i = 0; i < movie_rec.length; i+=2) { %>
+                    <% for (var i = 0; i < movie_rec.length; i+=1) { %>
                       <form action="/movie/<%=movie_rec[i].id%>" method="GET">
                         <div class="movie-list-item">
                           <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie_rec[i].backdrop_path %>" alt="Show">
@@ -157,7 +157,7 @@
                 <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                 <div class="movie-list-wrapper">
                   <div class="movie-list">
-                    <% for (var i = 0; i < movie_top.length; i+= 3) { %>
+                    <% for (var i = 0; i < movie_top.length; i+= 1) { %>
                       <form action="/movie/<%=movie_top[i].id%>" method="GET">
                         <div class="movie-list-item">
                           <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/w500<%=movie_top[i].backdrop_path %>" alt="Show">
@@ -247,6 +247,14 @@
     </footer>
     
   </div>
+  <script>
+    function HomeRefresh() {
+      location.reload(true)
+    }
+    function Logout() {
+      location.replace('http://localhost:3000/logout')
+    }
+  </script>
   <script src="/services/control.js"></script>
   <script src="https://flowbite.com/docs/flowbite.js"></script>
   <script src="https://flowbite.com/docs/datepicker.js"></script>

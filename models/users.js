@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var Schema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -13,7 +13,11 @@ var Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  gender : {type:String},
+  gender : {type:Boolean},
+  date: {
+    type: Date,
+    default: Date.now
+  },
   ratings: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Rating"
@@ -33,7 +37,7 @@ var Schema = new mongoose.Schema({
 
 
 
-const User = mongoose.model("Users", Schema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
 
