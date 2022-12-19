@@ -13,7 +13,22 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  gender : {type:Boolean},
+  firstname:{
+    type: String,
+    required : true,
+  },
+  lastname:{
+    type: String,
+    required : true,
+  },
+  phonenumber:{
+    type: Number,
+    required : true,
+  },
+  idmovie:{
+    type:Array,
+    required:true
+  },
   date: {
     type: Date,
     default: Date.now

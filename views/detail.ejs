@@ -85,59 +85,51 @@
         </div>
 
         <div class="my-4 mx-4">
-            <div class="relative bg-slate-200">
-                <!--poster-->
-                <div class="relative rounded-2xl ml-8 bottom-6">
-                    <div class="flex flex-row space-x-8">
-                        <img src="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" alt="" class="object-cover h-56 w-44 border-2 border-black ">
-                        <div class="relative rounded-2xl"> 
-                          <iframe src="https://www.youtube.com/embed/<%=video[0].key %>?autoplay=1&mute=0" frameborder="0" class="h-56 w-92"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <!--name-->
-                <div class="relative flex items-center ml-8">
-                    <div class="flex flex-row space-x-12">
-                        <h1 class="inline-block font-bold text-2xl sm:text-3xl">
-                            <%=movie.title%>
-                        </h1>
-                        <div class="relative">
-                          <h1 class="inline-block font-bold text-2xl sm:text-3xl" style="margin-top: 10px;">
-                              <%= movie.vote_average%>/10
-                          </h1>
-                      </div>
-                    </div>
-                </div>
-                <div class="relative flex flex-row space-x-2 ml-6 font-bold pt-4">
-                  <% for (var i=0; i < movie.genres.length; i+=1) { %>
-                      <div
-                          class="h-10 w-32 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm text-sm">
-                          <%= movie.genres[i].name%>
-                      </div>
-                      <% } %>
-                </div>
-                <div class="relative flex items-center ml-8 pt-4">
-                  <div class="flex flex-col">
-                    <ul>
-                      <% for (var i=0; i < director.length; i+=1) { %>
-                        <li class="flex flex-row space-x-2 space-y-1.5 ">
-                            <div
-                                class="h-10 w-32 rounded-lg flex items-center justify-center bg-violet-500 border-2 border-gray-500 shadow-sm font-bold text-2xl">
-                                <%= director[i].known_for_department%>
-                            </div>
-                            <div
-                                class="h-10 w-52 rounded-lg flex items-center justify-center font-bold text-2xl">
-                                <%= director[i].original_name%>
-                            </div>
-                        </li>
-                        <% } %>
-                    </ul>
+          <div class="bg-slate-200">
+              <div class="relative flex items-center ml-8">
+                  <div class="flex flex-row space-x-12">
+                      <h1 class="inline-block font-bold text-2xl sm:text-3xl" style="margin-top: 10px;">
+                          <%=movie.title%>
+                      </h1>
                   </div>
-                </div>
-                <div class="relative flex items-center ml-8 pt-4">
-                    <h1 class="font-semibold">Storyline</h1>
-                    <div class=""><%=movie.overview%> </div>
-                </div>
+              </div>
+              <!--poster-->
+              <div>
+                  <div class="flex flex-row space-x-8 mr-4" style="padding-left: 20px;padding-top: 20px;">
+                      <img src="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" alt=""
+                          class="object-cover h-56 w-44 border-2 border-black">
+                      <div class="relative rounded-2xl">
+
+                          <iframe src="https://www.youtube.com/embed/<%=video[0].key %>?autoplay=1&mute=0"
+                              frameborder="0" class="h-56 w-92"></iframe>
+                      </div>
+                  </div>
+              </div>
+              <!--name-->
+              <div style="margin-top: 10px;margin-left: 30px;">
+                  <a href="https://www.youtube.com/watch?v=<%=video[0].key %>">
+                      <button
+                          class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                          style="width: 200px;">
+
+                          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+                              style="width: 30px; height: 30px; float: left;">
+                          <h2 style="padding-top: 2px;">Watch Trailer</h2>
+                      </button></a>
+                  <h1 style="font-size: 20px; width: 500px;">
+                      <b> Score :</b>
+                      <%= Math.round(movie.vote_average*10)/10%>/10 <br>
+                          <% for (var i=0; i < director.length; i+=1) { %>
+                              <b>
+                                  <%= director[i].known_for_department%>:
+                              </b>
+                              <%= director[i].original_name%><br>
+                                  <% } %>
+
+                                      <b>Storyline :</b>
+                                      <%=movie.overview%>
+                  </h1>
+              </div>
                 <div class="pl-3 pt-4">
                     <p class="text-left text-gray-700 font-medium font-lg">| Movie For you</p>
                     <div class="movie-list-wrapper">

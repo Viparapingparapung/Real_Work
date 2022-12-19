@@ -80,13 +80,14 @@ app.use(passport.session());
 
 //register
 app.get('/register', isLoggedOut , async (req,res) => {
-  res.render("register.ejs");
+    res.render("register.ejs")
 });
+
 app.post("/register", async(req,res) => {
-  const { username, email, password, password2 } = req.body;
+  const { username, email, password, password2, firstname, lastname, phonenumber } = req.body;
   let errors = [];
 
-  if (!username || !email || !password || !password2) {
+  if (!username || !email || !password || !password2 || !firstname || !lastname || !phonenumber) {
     errors.push({ message: 'Please enter all fields' });
   }
 
@@ -104,7 +105,10 @@ app.post("/register", async(req,res) => {
       username,
       email,
       password,
-      password2
+      password2,
+      firstname,
+      lastname,
+      phonenumber
     });
   } else {
     User.findOne({ email: email }).then(user => {
@@ -115,14 +119,22 @@ app.post("/register", async(req,res) => {
           username,
           email,
           password,
-          password2
+          password2,
+          firstname,
+          lastname,
+          phonenumber
         });
       } else {
         const newUser = new User({
           username,
           email,
-          password
+          password,
+          firstname,
+          lastname,
+          phonenumber
         });
+        newUser.save()
+        console.log(newUser);
 
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -143,6 +155,23 @@ app.post("/register", async(req,res) => {
       }
     });
   }
+});
+
+//choosing movie
+app.get("/onboarding" , (req,res) => {
+  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
+    console.log(response.data.results)
+    res.render("choosemovie.ejs", {movie : response.data.results})
+  }).catch(err => console.log(err))
+})
+
+app.post("/onboarding/get_data", (req,res) => {
+
+  console.log(req.body);
+  const data = new Result({
+    idmovie: req.body
+  });
+  data.save();
 });
 
 
@@ -188,6 +217,7 @@ app.post(
     }
   }
 )
+
 
 //genre
 app.get("/genre/:name", (req,res) => {
@@ -303,22 +333,6 @@ app.get("/home", isLoggedIn , async (req, res) => {
 
   }).catch(err => console.log(err))
 
-});
-//choosing movie
-app.get("/onboarding" , (req,res) => {
-  axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b4a78f3f6df40ca3779248e701f90e5").then(response => {
-    console.log(response.data.results)
-    res.render("choosemovie.ejs", {movie : response.data.results})
-  }).catch(err => console.log(err))
-})
-
-app.post("/onboarding/get_data", (req,res) => {
-
-  console.log(req.body);
-  const data = new Result({
-    idmovie: req.body
-  });
-  data.save();
 });
 
 //profile page

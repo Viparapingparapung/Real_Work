@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <section class="multi_step_form">
+      <form action="/blogs" method="POST"  enctype="multipart/form-data" id="msform">
+          <!-- Tittle -->
+          <div class="tittle">
+              <h2>New Card</h2>
+          </div>
+          <!-- progressbar -->
+          <ul id="progressbar">
+              <li class="active">Personal details</li>
+              <li>About Section</li>
+              <li>Product Section</li>
+          </ul>
+          <!-- fieldsets -->
+          <fieldset>
+              <div class="form-row align-items-center">
+                  <div class=" col-md-3 ">
+                      <h5>Name</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control " placeholder="Name of the Card Holder" name="name " required>
+                  </div>
+              </div>
+  
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Company</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Name of the Company" name="company">
+                  </div>
+              </div>
+  
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Designation</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Designation at the Company" name="designation">
+                  </div>
+              </div>
+  
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Phone Number</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Phone Number" name="phone_no">
+                  </div>
+              </div>
+  
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Email</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Email ID" name="email">
+                  </div>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Address</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Address" name="address">
+                  </div>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Profile Photo</h5>
+                  </div>
+  
+                  <div class="form-group col-md-9 ">
+                      <input type="file" name="image" id="image"   class="form-control-file">
+                  </div>
+              </div>
+              <div class="form-group">
+              </div>
+  
+              <button type="button " class="action-button previous_button ">Back</button>
+              <button type="button " class="next action-button ">Continue</button>
+          </fieldset>
+  
+          <fieldset>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Year of Establishment</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Year of Establishment of the Company" name="year_of_establishment">
+                  </div>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Description</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Description about the Company" name="description">
+                  </div>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Profile Photo</h5>
+                  </div>
+  
+                  <div class="form-group col-md-9 ">
+                      <input type="file" name="image" id="image" multiple class="form-control-file">
+                  </div>
+              </div>
+              <button type="button " class="action-button previous previous_button ">Back</button>
+              <button type="button " class="next action-button ">Continue</button>
+          </fieldset>
+          <fieldset>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Product 1</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Name of product" name="product">
+                  </div>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Description</h5>
+                  </div>
+                  <div class="form-group col-md-9 ">
+                      <input type="text " class="form-control" placeholder="Description about the product" name="product_desc">
+                  </div>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="col-md-3 ">
+                      <h5>Product Images</h5>
+                  </div>
+  
+                  <div class="form-group col-md-9 ">
+                      <input type="file" name="image" id="image" multiple class="form-control-file">
+                  </div>
+              </div>
+  
+              <button type="button " class="action-button previous previous_button ">Back</button>
+              <button type="submit" class="action-button ">Save</a></button>
+          </fieldset>
+      </form>
+  </section>
+  </body>
+</html>
